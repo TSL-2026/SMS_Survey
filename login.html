@@ -35,8 +35,6 @@
             background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 60%, #1a6a9a 100%);
             z-index: -1;
         }
-
-        /* CARD */
         .card {
             background: var(--white);
             border-radius: 16px;
@@ -48,14 +46,12 @@
             background: linear-gradient(135deg, var(--navy), var(--blue));
             padding: 2rem;
             text-align: center;
-            position: relative;
         }
         .brand {
             font-family: 'Barlow Condensed', sans-serif;
             font-size: 1.3rem; font-weight: 700;
             color: rgba(255,255,255,0.6);
-            letter-spacing: 3px;
-            margin-bottom: 0.3rem;
+            letter-spacing: 3px; margin-bottom: 0.3rem;
         }
         .brand span { color: var(--accent); }
         .card-header h1 {
@@ -64,8 +60,6 @@
             color: var(--white); letter-spacing: 1px;
         }
         .card-header p { color: rgba(255,255,255,0.6); font-size: 0.85rem; margin-top: 0.3rem; }
-
-        /* TABS */
         .tabs {
             display: grid; grid-template-columns: 1fr 1fr;
             border-bottom: 1px solid var(--border);
@@ -77,26 +71,21 @@
             border-bottom: 3px solid transparent; transition: all 0.15s;
         }
         .tab-btn.active { color: var(--sky); border-bottom-color: var(--sky); }
-
-        /* FORM PANELS */
         .panel { padding: 1.8rem; display: none; }
         .panel.active { display: block; }
-
         .form-group { margin-bottom: 1.2rem; }
         .form-group label {
             display: block; font-size: 0.82rem; font-weight: 600;
             color: var(--muted); text-transform: uppercase;
             letter-spacing: 0.5px; margin-bottom: 0.4rem;
         }
-        .form-group input, .form-group select {
+        .form-group input {
             width: 100%; padding: 0.75rem 1rem;
             border: 2px solid var(--border); border-radius: 8px;
             font-family: 'Barlow', sans-serif; font-size: 0.95rem;
             color: var(--text); transition: border-color 0.15s;
         }
-        .form-group input:focus, .form-group select:focus {
-            outline: none; border-color: var(--sky);
-        }
+        .form-group input:focus { outline: none; border-color: var(--sky); }
         .btn {
             width: 100%; padding: 0.85rem;
             background: linear-gradient(135deg, var(--sky), var(--navy));
@@ -108,39 +97,24 @@
         }
         .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(45,125,210,0.4); }
         .btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
-
-        /* STATUS */
         .status-msg {
             margin-top: 1rem; padding: 0.8rem 1rem;
             border-radius: 8px; font-size: 0.88rem; display: none;
         }
         .status-msg.error   { background: #fdf0ef; color: var(--danger); border: 1px solid #f5c6c3; display: block; }
         .status-msg.success { background: #eafaf1; color: var(--success); border: 1px solid #a9dfbf; display: block; }
-        .status-msg.info    { background: #e8f4fd; color: var(--sky);    border: 1px solid #b8d9f5; display: block; }
-
-        /* DIVIDER */
         .divider {
             display: flex; align-items: center; gap: 0.8rem;
             margin: 1.2rem 0; color: var(--muted); font-size: 0.8rem;
         }
-        .divider::before, .divider::after {
-            content: ''; flex: 1; height: 1px; background: var(--border);
-        }
-
-        /* FOOTER */
+        .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
         .card-footer {
-            padding: 1rem 1.8rem;
-            background: var(--light);
+            padding: 1rem 1.8rem; background: var(--light);
             border-top: 1px solid var(--border);
-            text-align: center;
-            font-size: 0.8rem; color: var(--muted);
+            text-align: center; font-size: 0.8rem; color: var(--muted);
         }
         .card-footer a { color: var(--sky); text-decoration: none; }
-
-        .powered {
-            text-align: center; margin-top: 1.5rem;
-            font-size: 0.78rem; color: rgba(255,255,255,0.5);
-        }
+        .powered { text-align: center; margin-top: 1.5rem; font-size: 0.78rem; color: rgba(255,255,255,0.5); }
         .powered a { color: rgba(255,255,255,0.7); text-decoration: none; }
         .powered strong { color: var(--accent); }
     </style>
@@ -202,7 +176,7 @@
         </div>
         <div class="form-group">
             <label>Invite Code</label>
-            <input type="text" id="regInviteCode" placeholder="e.g. a1b2c3d4" style="letter-spacing:2px; text-transform:uppercase;">
+            <input type="text" id="regInviteCode" placeholder="e.g. c4f632a7" style="letter-spacing:2px; text-transform:uppercase;">
         </div>
         <button class="btn" id="registerBtn" onclick="handleRegister()">CREATE ACCOUNT →</button>
         <div class="status-msg" id="registerStatus"></div>
@@ -221,27 +195,27 @@
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 
 // ── CONFIG ────────────────────────────────────────────────
-const SUPABASE_URL  = 'YOUR_SUPABASE_URL';
-const SUPABASE_ANON = 'YOUR_SUPABASE_ANON_KEY';
+const SUPABASE_URL  = 'https://nrbnhvtomwfmanijtgal.supabase.co';
+const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5yYm5odnRvbXdmbWFuaWp0Z2FsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQwOTAxMTQsImV4cCI6MjA4OTY2NjExNH0.QsOVIjDDc_UzT7CqtUedGktrAtVTvXk3HnxKlwtWtDs';
 const DASHBOARD_URL = 'https://app.thesafetylayer.xyz';
 // ─────────────────────────────────────────────────────────
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON);
 
-// Check if already logged in
+// Redirect if already logged in
 const { data: { session } } = await supabase.auth.getSession();
 if (session) window.location.href = DASHBOARD_URL;
 
-// Tab switching
+// ── TAB SWITCHING ─────────────────────────────────────────
 window.showTab = function(tab) {
-    document.querySelectorAll('.tab-btn').forEach((b,i) =>
-        b.classList.toggle('active', (i===0 && tab==='login') || (i===1 && tab==='register'))
+    document.querySelectorAll('.tab-btn').forEach((b, i) =>
+        b.classList.toggle('active', (i === 0 && tab === 'login') || (i === 1 && tab === 'register'))
     );
     document.getElementById('loginPanel').classList.toggle('active', tab === 'login');
     document.getElementById('registerPanel').classList.toggle('active', tab === 'register');
 };
 
-// ── LOGIN ────────────────────────────────────────────────
+// ── LOGIN ─────────────────────────────────────────────────
 window.handleLogin = async function() {
     const email    = document.getElementById('loginEmail').value.trim();
     const password = document.getElementById('loginPassword').value;
@@ -253,6 +227,7 @@ window.handleLogin = async function() {
         status.textContent = '⚠️ Please enter your email and password.';
         return;
     }
+
     btn.disabled = true;
     btn.textContent = 'Signing in...';
 
@@ -270,7 +245,7 @@ window.handleLogin = async function() {
     }
 };
 
-// ── MAGIC LINK ───────────────────────────────────────────
+// ── MAGIC LINK ────────────────────────────────────────────
 window.handleMagicLink = async function() {
     const email  = document.getElementById('loginEmail').value.trim();
     const status = document.getElementById('loginStatus');
@@ -295,7 +270,7 @@ window.handleMagicLink = async function() {
     }
 };
 
-// ── REGISTER ─────────────────────────────────────────────
+// ── REGISTER ──────────────────────────────────────────────
 window.handleRegister = async function() {
     const name       = document.getElementById('regName').value.trim();
     const email      = document.getElementById('regEmail').value.trim();
@@ -318,9 +293,10 @@ window.handleRegister = async function() {
     btn.disabled = true;
     btn.textContent = 'Creating account...';
 
-    // 1. Create Supabase Auth user
-    const { data: authData, error: authError } = await supabase.auth.signUp({
-        email, password,
+    // Step 1 — Create Supabase Auth user
+    const { error: authError } = await supabase.auth.signUp({
+        email,
+        password,
         options: { emailRedirectTo: DASHBOARD_URL }
     });
 
@@ -332,7 +308,18 @@ window.handleRegister = async function() {
         return;
     }
 
-    // 2. Link to airline via invite code
+    // Step 2 — Sign in immediately so auth.uid() is available for the RPC call
+    const { error: signInError } = await supabase.auth.signInWithPassword({ email, password });
+
+    if (signInError) {
+        status.className = 'status-msg error';
+        status.textContent = '❌ Account created but auto sign-in failed. Please verify your email then sign in manually.';
+        btn.disabled = false;
+        btn.textContent = 'CREATE ACCOUNT →';
+        return;
+    }
+
+    // Step 3 — Link to airline via invite code
     const { data: result, error: rpcError } = await supabase
         .rpc('register_with_invite', {
             p_invite_code: inviteCode,
@@ -348,14 +335,13 @@ window.handleRegister = async function() {
     }
 
     status.className = 'status-msg success';
-    status.textContent = `✅ Account created for ${result.airline_name}! Check your email to verify, then sign in.`;
+    status.textContent = `✅ Account created for ${result.airline_name}! Redirecting to dashboard...`;
     btn.textContent = 'ACCOUNT CREATED ✓';
 
-    // Switch to login tab after 3s
-    setTimeout(() => showTab('login'), 3000);
+    setTimeout(() => window.location.href = DASHBOARD_URL, 2000);
 };
 
-// Allow Enter key on inputs
+// ── ENTER KEY SUPPORT ─────────────────────────────────────
 document.addEventListener('keydown', e => {
     if (e.key === 'Enter') {
         const loginActive = document.getElementById('loginPanel').classList.contains('active');
