@@ -548,7 +548,8 @@ const TOTAL_Q     = 23;
 // ── INIT ──────────────────────────────────────────────────
 async function init() {
     // Get slug from URL path: /sita-air → "sita-air"
-    const slug = window.location.pathname.replace(/^\/+|\/+$/g, '') || 'sita-air';
+    const params = new URLSearchParams(window.location.search);
+    const slug = params.get('airline') || 'sita-air';
 
     // Fetch airline from Supabase
     const { data, error } = await supabase
