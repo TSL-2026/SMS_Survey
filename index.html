@@ -279,13 +279,40 @@
         .question.unanswered .validation-msg { display: block; }
 
         /* ── FOOTER ── */
-        .site-footer { text-align: center; padding: 2rem; color: var(--muted); font-size: 0.82rem; }
-        .site-footer a { color: var(--sky); text-decoration: none; }
-        .powered-by {
-            display: flex; align-items: center; justify-content: center;
-            gap: 0.4rem; margin-top: 0.5rem; font-size: 0.75rem; color: var(--muted);
+        .site-footer {
+            background: var(--navy);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            margin-top: 2rem;
         }
-        .powered-by strong { color: var(--sky); }
+        .footer-brand {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.1rem; font-weight: 700;
+            letter-spacing: 2px; margin-bottom: 0.4rem;
+        }
+        .footer-brand a {
+            color: var(--white); text-decoration: none;
+            transition: color 0.15s;
+        }
+        .footer-brand a:hover { color: var(--accent); }
+        .footer-brand span { color: var(--accent); }
+        .footer-tagline {
+            font-size: 0.78rem; color: rgba(255,255,255,0.4);
+            margin-bottom: 1rem;
+        }
+        .footer-divider {
+            width: 40px; height: 1px;
+            background: rgba(255,255,255,0.15);
+            margin: 0.8rem auto;
+        }
+        .footer-credit {
+            font-size: 0.75rem; color: rgba(255,255,255,0.35);
+        }
+        .footer-credit a {
+            color: rgba(255,255,255,0.55); text-decoration: none;
+            transition: color 0.15s;
+        }
+        .footer-credit a:hover { color: var(--accent); }
 
         /* ── RESPONSIVE ── */
         @media (max-width: 520px) {
@@ -397,12 +424,15 @@
     </div><!-- /.container -->
 
     <footer class="site-footer">
-        <div class="powered-by">
-            Powered by <strong>The Safety Layer</strong> ·
-            <a href="https://thesafetylayer.xyz" target="_blank">thesafetylayer.xyz</a>
+        <div class="footer-brand">
+            <a href="https://thesafetylayer.xyz" target="_blank" rel="noopener">
+                THE <span>SAFETY</span> LAYER
+            </a>
         </div>
-        <div style="margin-top:0.3rem;">
-            A project by <a href="https://gsacharya.com" target="_blank">Ghanshyam Acharya</a>
+        <div class="footer-tagline">Aviation Safety Management · ICAO Annex 19</div>
+        <div class="footer-divider"></div>
+        <div class="footer-credit">
+            Built by <a href="https://gsacharya.com" target="_blank" rel="noopener">Ghanshyam Acharya</a>
         </div>
     </footer>
 
