@@ -24,192 +24,93 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Barlow', sans-serif; background: var(--light); color: var(--text); min-height: 100vh; }
 
-        /* ── LOADING SCREEN ── */
+        /* ── LOADING ── */
         #loadingScreen {
-            position: fixed; inset: 0;
-            background: var(--navy);
+            position: fixed; inset: 0; background: var(--navy);
             display: flex; flex-direction: column;
             align-items: center; justify-content: center;
             z-index: 9999; gap: 1.5rem;
-            transition: opacity 0.3s ease;
         }
-        #loadingScreen.hidden { opacity: 0; pointer-events: none; display: none; }
-        .loader-logo {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-size: 1.8rem; font-weight: 700;
-            color: var(--white); letter-spacing: 3px;
-        }
+        #loadingScreen.hidden { display: none; }
+        .loader-logo { font-family: 'Barlow Condensed', sans-serif; font-size: 1.8rem; font-weight: 700; color: var(--white); letter-spacing: 3px; }
         .loader-logo span { color: var(--accent); }
-        .spinner {
-            width: 40px; height: 40px;
-            border: 3px solid rgba(255,255,255,0.2);
-            border-top-color: var(--accent);
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-        }
+        .spinner { width: 40px; height: 40px; border: 3px solid rgba(255,255,255,0.2); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
         @keyframes spin { to { transform: rotate(360deg); } }
 
         /* ── NOT FOUND ── */
-        #notFoundScreen {
-            display: none; text-align: center;
-            padding: 6rem 2rem; min-height: 100vh;
-            background: var(--navy);
-            flex-direction: column; align-items: center; justify-content: center;
-        }
+        #notFoundScreen { display: none; text-align: center; padding: 6rem 2rem; min-height: 100vh; background: var(--navy); flex-direction: column; align-items: center; justify-content: center; }
         #notFoundScreen.visible { display: flex; }
-        #notFoundScreen h2 {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-size: 2.5rem; color: var(--danger);
-            margin-bottom: 1rem; letter-spacing: 1px;
-        }
+        #notFoundScreen h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 2.5rem; color: var(--danger); margin-bottom: 1rem; letter-spacing: 1px; }
         #notFoundScreen p { color: rgba(255,255,255,0.6); font-size: 0.95rem; line-height: 1.7; }
 
-        /* ── LANGUAGE BAR ── */
-        .lang-bar {
-            background: var(--navy);
-            padding: 0.5rem 1rem;
-            display: flex; justify-content: flex-end; gap: 0.5rem;
-        }
-        .lang-btn {
-            background: transparent;
-            border: 1px solid rgba(255,255,255,0.25);
-            color: rgba(255,255,255,0.7);
-            padding: 0.3rem 0.8rem; border-radius: 20px;
-            font-family: 'Barlow', sans-serif;
-            font-size: 0.8rem; cursor: pointer; transition: all 0.15s;
-        }
-        .lang-btn.active {
-            background: var(--accent); border-color: var(--accent);
-            color: var(--navy); font-weight: 700;
-        }
+        /* ── LANG BAR ── */
+        .lang-bar { background: var(--navy); padding: 0.5rem 1rem; display: flex; justify-content: flex-end; gap: 0.5rem; }
+        .lang-btn { background: transparent; border: 1px solid rgba(255,255,255,0.25); color: rgba(255,255,255,0.7); padding: 0.3rem 0.8rem; border-radius: 20px; font-family: 'Barlow', sans-serif; font-size: 0.8rem; cursor: pointer; transition: all 0.15s; }
+        .lang-btn.active { background: var(--accent); border-color: var(--accent); color: var(--navy); font-weight: 700; }
 
         /* ── HEADER ── */
-        .site-header {
-            background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
-            padding: 2rem 1.5rem 2.5rem;
-            text-align: center; position: relative; overflow: hidden;
-        }
-        .site-header::before {
-            content: '';
-            position: absolute; inset: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
-        }
-        .airline-logo-wrap {
-            display: flex; align-items: center; justify-content: center;
-            gap: 1rem; margin-bottom: 0.8rem; position: relative; z-index: 1;
-        }
-        .airline-logo-img {
-            width: 56px; height: 56px; border-radius: 12px;
-            object-fit: contain; background: rgba(255,255,255,0.1); padding: 4px;
-        }
-        .airline-logo-placeholder {
-            width: 56px; height: 56px; border-radius: 12px;
-            background: var(--accent);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.8rem;
-        }
-        .airline-name {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-size: 2rem; font-weight: 700;
-            color: var(--white); letter-spacing: 2px;
-        }
-        .site-header h1 {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-size: 1.4rem; font-weight: 600;
-            color: var(--white); letter-spacing: 0.5px;
-            margin-bottom: 0.3rem; position: relative; z-index: 1;
-        }
+        .site-header { background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%); padding: 2rem 1.5rem 2.5rem; text-align: center; position: relative; overflow: hidden; }
+        .site-header::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E"); }
+        .airline-logo-wrap { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 0.8rem; position: relative; z-index: 1; }
+        .airline-logo-img { width: 56px; height: 56px; border-radius: 12px; object-fit: contain; background: rgba(255,255,255,0.1); padding: 4px; }
+        .airline-logo-placeholder { width: 56px; height: 56px; border-radius: 12px; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; }
+        .airline-name { font-family: 'Barlow Condensed', sans-serif; font-size: 2rem; font-weight: 700; color: var(--white); letter-spacing: 2px; }
+        .site-header h1 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.4rem; font-weight: 600; color: var(--white); letter-spacing: 0.5px; margin-bottom: 0.3rem; position: relative; z-index: 1; }
         .site-header p { color: rgba(255,255,255,0.65); font-size: 0.85rem; position: relative; z-index: 1; }
 
         /* ── CONTAINER ── */
         .container { max-width: 720px; margin: 0 auto; padding: 0 1rem 4rem; }
 
-        /* ── ANONYMITY NOTICE ── */
-        .anon-notice {
-            background: #e8f4fd; border-left: 4px solid var(--sky);
-            padding: 0.9rem 1.2rem; margin: 1.5rem auto;
-            border-radius: 0 var(--radius) var(--radius) 0;
-            font-size: 0.88rem; color: var(--blue);
-            display: flex; gap: 0.6rem; align-items: flex-start;
-        }
-        .anon-notice strong { display: block; margin-bottom: 0.2rem; }
+        /* ── CONSENT BLOCK ── */
+        .consent-block { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); margin: 1.5rem 0; overflow: hidden; }
+        .consent-header { background: linear-gradient(135deg, #1a3a1a, #2d6a2d); padding: 0.9rem 1.4rem; display: flex; align-items: center; gap: 0.7rem; }
+        .consent-header h2 { color: var(--white); font-size: 1rem; font-weight: 600; font-family: 'Barlow Condensed', sans-serif; letter-spacing: 0.5px; }
+        .consent-body { padding: 1.4rem; }
+        .consent-intro { font-size: 0.9rem; color: var(--text); line-height: 1.7; margin-bottom: 1.2rem; padding-bottom: 1.2rem; border-bottom: 1px solid var(--border); }
+        .consent-intro strong { display: block; font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; letter-spacing: 0.5px; color: var(--navy); margin-bottom: 0.4rem; }
+        .consent-items { display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 1.2rem; }
+        .consent-item { display: flex; gap: 0.8rem; align-items: flex-start; font-size: 0.88rem; line-height: 1.6; color: var(--text); }
+        .consent-icon { font-size: 1rem; flex-shrink: 0; margin-top: 0.1rem; }
+        .consent-item strong { color: var(--navy); display: block; margin-bottom: 0.1rem; }
+        .consent-just-culture { background: #f0f7f0; border-left: 4px solid #27ae60; padding: 0.9rem 1.1rem; border-radius: 0 var(--radius) var(--radius) 0; font-size: 0.88rem; color: #1a4a1a; line-height: 1.6; }
+        .consent-just-culture strong { display: block; margin-bottom: 0.2rem; font-size: 0.9rem; }
+        .consent-time { display: inline-flex; align-items: center; gap: 0.4rem; background: var(--light); border: 1px solid var(--border); padding: 0.4rem 0.9rem; border-radius: 20px; font-size: 0.8rem; color: var(--muted); margin-top: 1rem; }
 
         /* ── PROGRESS ── */
-        .progress-wrap {
-            position: sticky; top: 0; z-index: 100;
-            background: var(--light); padding: 0.75rem 0;
-            border-bottom: 1px solid var(--border); margin-bottom: 1.5rem;
-        }
-        .progress-label {
-            font-size: 0.8rem; color: var(--muted); margin-bottom: 0.3rem;
-            display: flex; justify-content: space-between;
-        }
+        .progress-wrap { position: sticky; top: 0; z-index: 100; background: var(--light); padding: 0.75rem 0; border-bottom: 1px solid var(--border); margin-bottom: 1.5rem; }
+        .progress-label { font-size: 0.8rem; color: var(--muted); margin-bottom: 0.3rem; display: flex; justify-content: space-between; }
         .progress-bar { height: 6px; background: var(--border); border-radius: 99px; overflow: hidden; }
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--sky), var(--accent));
-            border-radius: 99px; transition: width 0.4s ease; width: 0%;
-        }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, var(--sky), var(--accent)); border-radius: 99px; transition: width 0.4s ease; width: 0%; }
 
         /* ── SECTION ── */
-        .section {
-            background: var(--white); border: 1px solid var(--border);
-            border-radius: var(--radius); margin-bottom: 1.5rem; overflow: hidden;
-        }
-        .section-header {
-            background: linear-gradient(135deg, var(--navy), var(--blue));
-            padding: 0.9rem 1.4rem; display: flex; align-items: center; gap: 0.7rem;
-        }
-        .section-badge {
-            background: var(--accent); color: var(--navy);
-            font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
-            font-size: 0.75rem; padding: 0.2rem 0.6rem; border-radius: 4px;
-            letter-spacing: 1px; white-space: nowrap;
-        }
+        .section { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 1.5rem; overflow: hidden; }
+        .section-header { background: linear-gradient(135deg, var(--navy), var(--blue)); padding: 0.9rem 1.4rem; display: flex; align-items: center; gap: 0.7rem; }
+        .section-badge { background: var(--accent); color: var(--navy); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.75rem; padding: 0.2rem 0.6rem; border-radius: 4px; letter-spacing: 1px; white-space: nowrap; }
         .section-header h2 { color: var(--white); font-size: 1rem; font-weight: 600; }
         .section-body { padding: 0.5rem 0; }
 
+        /* ── OPTIONAL DEMOGRAPHICS SECTION ── */
+        .section.optional-section .section-header { background: linear-gradient(135deg, #3a3a4a, #5a5a7a); }
+        .optional-note { background: #fff8e1; border-left: 3px solid var(--accent); padding: 0.7rem 1.4rem; font-size: 0.82rem; color: #7a5a00; display: flex; gap: 0.5rem; align-items: flex-start; }
+
         /* ── QUESTION ── */
-        .question {
-            padding: 1.1rem 1.4rem; border-bottom: 1px solid var(--border);
-            transition: background 0.15s;
-        }
+        .question { padding: 1.1rem 1.4rem; border-bottom: 1px solid var(--border); transition: background 0.15s; }
         .question:last-child { border-bottom: none; }
         .question:hover { background: #fafbfd; }
-        .question-text {
-            font-size: 0.93rem; font-weight: 500; color: var(--text);
-            margin-bottom: 0.9rem; line-height: 1.5;
-            display: flex; gap: 0.5rem;
-        }
-        .q-num {
-            color: var(--sky); font-family: 'Barlow Condensed', sans-serif;
-            font-weight: 700; font-size: 1rem; min-width: 26px;
-        }
+        .question-text { font-size: 0.93rem; font-weight: 500; color: var(--text); margin-bottom: 0.9rem; line-height: 1.5; display: flex; gap: 0.5rem; }
+        .q-num { color: var(--sky); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1rem; min-width: 26px; }
 
         /* ── BINARY ── */
         .options-binary { display: flex; gap: 1rem; }
-        .options-binary label {
-            flex: 1; display: flex; align-items: center; justify-content: center;
-            gap: 0.5rem; padding: 0.6rem 1rem;
-            border: 2px solid var(--border); border-radius: 8px;
-            cursor: pointer; font-size: 0.9rem; font-weight: 500; transition: all 0.15s;
-        }
+        .options-binary label { flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.6rem 1rem; border: 2px solid var(--border); border-radius: 8px; cursor: pointer; font-size: 0.9rem; font-weight: 500; transition: all 0.15s; }
         .options-binary input[type="radio"] { display: none; }
         .options-binary label:has(input:checked) { border-color: var(--sky); background: #e8f4fd; color: var(--sky); }
 
         /* ── LIKERT ── */
         .options-likert { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.4rem; }
-        .options-likert label {
-            display: flex; flex-direction: column; align-items: center; gap: 0.3rem;
-            padding: 0.5rem 0.2rem; border: 2px solid var(--border); border-radius: 8px;
-            cursor: pointer; font-size: 0.72rem; text-align: center; line-height: 1.3;
-            color: var(--muted); transition: all 0.15s; min-height: 60px; justify-content: center;
-        }
+        .options-likert label { display: flex; flex-direction: column; align-items: center; gap: 0.3rem; padding: 0.5rem 0.2rem; border: 2px solid var(--border); border-radius: 8px; cursor: pointer; font-size: 0.72rem; text-align: center; line-height: 1.3; color: var(--muted); transition: all 0.15s; min-height: 60px; justify-content: center; }
         .options-likert input[type="radio"] { display: none; }
-        .likert-dot {
-            width: 12px; height: 12px; border-radius: 50%;
-            border: 2px solid var(--border); transition: all 0.15s; flex-shrink: 0;
-        }
+        .likert-dot { width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--border); transition: all 0.15s; flex-shrink: 0; }
         .options-likert label:has(input:checked) { border-color: var(--sky); background: #e8f4fd; color: var(--sky); font-weight: 600; }
         .options-likert label:has(input:checked) .likert-dot { background: var(--sky); border-color: var(--sky); }
         .options-likert label:nth-child(1):has(input:checked) { border-color: var(--danger); background: #fdf0ef; color: var(--danger); }
@@ -217,60 +118,30 @@
         .options-likert label:nth-child(4):has(input:checked) { border-color: #27ae60; background: #eafaf1; color: #27ae60; }
         .options-likert label:nth-child(5):has(input:checked) { border-color: var(--success); background: #d5f5e3; color: var(--success); }
 
-        /* ── DEMOGRAPHICS GRID ── */
+        /* ── DEMO GRID ── */
         .demo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; padding: 1.2rem 1.4rem; }
         .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
         .form-group.full { grid-column: 1 / -1; }
-        .form-group label {
-            font-size: 0.82rem; font-weight: 600; color: var(--muted);
-            text-transform: uppercase; letter-spacing: 0.5px;
-        }
-        .form-group select, .form-group textarea {
-            padding: 0.65rem 0.9rem; border: 2px solid var(--border); border-radius: 8px;
-            font-family: 'Barlow', sans-serif; font-size: 0.9rem; color: var(--text);
-            background: var(--white); transition: border-color 0.15s; appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7f96' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
-            background-repeat: no-repeat; background-position: right 0.9rem center;
-        }
+        .form-group label { font-size: 0.82rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+        .form-group select, .form-group textarea { padding: 0.65rem 0.9rem; border: 2px solid var(--border); border-radius: 8px; font-family: 'Barlow', sans-serif; font-size: 0.9rem; color: var(--text); background: var(--white); transition: border-color 0.15s; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7f96' d='M6 8L1 3h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.9rem center; }
         .form-group textarea { background-image: none; resize: vertical; min-height: 100px; }
         .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--sky); }
 
         /* ── SUBMIT ── */
         .submit-wrap { text-align: center; margin-top: 2rem; }
-        .btn-submit {
-            background: linear-gradient(135deg, var(--sky), var(--navy));
-            color: var(--white); border: none; padding: 1rem 3rem;
-            font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem;
-            font-weight: 700; letter-spacing: 1.5px; border-radius: var(--radius);
-            cursor: pointer; transition: transform 0.15s, box-shadow 0.15s;
-            box-shadow: 0 4px 20px rgba(45,125,210,0.3);
-        }
+        .btn-submit { background: linear-gradient(135deg, var(--sky), var(--navy)); color: var(--white); border: none; padding: 1rem 3rem; font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 700; letter-spacing: 1.5px; border-radius: var(--radius); cursor: pointer; transition: transform 0.15s, box-shadow 0.15s; box-shadow: 0 4px 20px rgba(45,125,210,0.3); }
         .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(45,125,210,0.4); }
         .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 
         /* ── STATUS ── */
-        #statusMessage {
-            margin-top: 1rem; padding: 0.9rem 1.2rem;
-            border-radius: var(--radius); font-size: 0.9rem; display: none;
-        }
+        #statusMessage { margin-top: 1rem; padding: 0.9rem 1.2rem; border-radius: var(--radius); font-size: 0.9rem; display: none; }
         #statusMessage.error   { background: #fdf0ef; color: var(--danger); border: 1px solid #f5c6c3; display: block; }
         #statusMessage.loading { background: #e8f4fd; color: var(--sky);   border: 1px solid #b8d9f5; display: block; }
 
-        /* ── SUCCESS SCREEN ── */
-        #successScreen {
-            display: none; text-align: center; padding: 4rem 2rem;
-            background: var(--white); border-radius: var(--radius);
-            border: 1px solid var(--border); margin-top: 2rem;
-        }
-        .success-icon {
-            width: 80px; height: 80px; background: #d5f5e3; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 2.5rem; margin: 0 auto 1.5rem;
-        }
-        #successScreen h2 {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-size: 1.8rem; color: var(--success); margin-bottom: 0.5rem;
-        }
+        /* ── SUCCESS ── */
+        #successScreen { display: none; text-align: center; padding: 4rem 2rem; background: var(--white); border-radius: var(--radius); border: 1px solid var(--border); margin-top: 2rem; }
+        .success-icon { width: 80px; height: 80px; background: #d5f5e3; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; margin: 0 auto 1.5rem; }
+        #successScreen h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.8rem; color: var(--success); margin-bottom: 0.5rem; }
         #successScreen p { color: var(--muted); font-size: 0.95rem; }
 
         /* ── VALIDATION ── */
@@ -279,39 +150,15 @@
         .question.unanswered .validation-msg { display: block; }
 
         /* ── FOOTER ── */
-        .site-footer {
-            background: var(--navy);
-            padding: 2rem 1.5rem;
-            text-align: center;
-            margin-top: 2rem;
-        }
-        .footer-brand {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-size: 1.1rem; font-weight: 700;
-            letter-spacing: 2px; margin-bottom: 0.4rem;
-        }
-        .footer-brand a {
-            color: var(--white); text-decoration: none;
-            transition: color 0.15s;
-        }
+        .site-footer { background: var(--navy); padding: 2rem 1.5rem; text-align: center; margin-top: 2rem; }
+        .footer-brand { font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 700; letter-spacing: 2px; margin-bottom: 0.4rem; }
+        .footer-brand a { color: var(--white); text-decoration: none; transition: color 0.15s; }
         .footer-brand a:hover { color: var(--accent); }
         .footer-brand span { color: var(--accent); }
-        .footer-tagline {
-            font-size: 0.78rem; color: rgba(255,255,255,0.4);
-            margin-bottom: 1rem;
-        }
-        .footer-divider {
-            width: 40px; height: 1px;
-            background: rgba(255,255,255,0.15);
-            margin: 0.8rem auto;
-        }
-        .footer-credit {
-            font-size: 0.75rem; color: rgba(255,255,255,0.35);
-        }
-        .footer-credit a {
-            color: rgba(255,255,255,0.55); text-decoration: none;
-            transition: color 0.15s;
-        }
+        .footer-tagline { font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-bottom: 1rem; }
+        .footer-divider { width: 40px; height: 1px; background: rgba(255,255,255,0.15); margin: 0.8rem auto; }
+        .footer-credit { font-size: 0.75rem; color: rgba(255,255,255,0.35); }
+        .footer-credit a { color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.15s; }
         .footer-credit a:hover { color: var(--accent); }
 
         /* ── RESPONSIVE ── */
@@ -323,19 +170,16 @@
 </head>
 <body>
 
-<!-- Loading screen -->
 <div id="loadingScreen">
     <div class="loader-logo">THE <span>SAFETY</span> LAYER</div>
     <div class="spinner"></div>
 </div>
 
-<!-- Not found screen -->
 <div id="notFoundScreen">
     <h2>Survey Not Found</h2>
     <p>This survey link is invalid or has been deactivated.<br>Please contact your safety department.</p>
 </div>
 
-<!-- Main survey (shown after airline loads) -->
 <div id="mainContent" style="display:none;">
 
     <div class="lang-bar">
@@ -350,19 +194,53 @@
             <div class="airline-name" id="airlineName">Loading...</div>
         </div>
         <h1 id="headerTitle">Safety Culture Survey</h1>
-        <p id="headerSubtitle">Corporate Safety Department · ICAO Annex 19 Aligned</p>
+        <p id="headerSubtitle">Safety Management System · ICAO Annex 19 Aligned</p>
     </header>
 
     <div class="container">
 
-        <div class="anon-notice">
-            <span>🔒</span>
-            <div>
-                <strong id="anonTitle">Your responses are fully anonymous.</strong>
-                <span id="anonBody">No names or identifying information are collected. Results are reported in aggregate only. Please answer honestly.</span>
+        <!-- CONSENT / INTRO BLOCK -->
+        <div class="consent-block">
+            <div class="consent-header">
+                <h2 id="consentHeading">📋 Before You Begin — Please Read</h2>
+            </div>
+            <div class="consent-body">
+                <div class="consent-intro">
+                    <strong id="consentPurposeTitle">Purpose of This Survey</strong>
+                    <span id="consentPurposeBody">Thank you for participating. The objective of this survey is to assess the safety culture within our organisation across the four pillars of the Safety Management System (SMS) as defined by ICAO Annex 19. Your insights are vital to identifying systemic strengths and areas for improvement that data alone cannot capture.</span>
+                </div>
+                <div class="consent-items">
+                    <div class="consent-item">
+                        <span class="consent-icon">🤝</span>
+                        <div>
+                            <strong id="consentVolTitle">Voluntary Participation</strong>
+                            <span id="consentVolBody">You may skip any question or stop the survey at any time. There is no obligation to complete every item.</span>
+                        </div>
+                    </div>
+                    <div class="consent-item">
+                        <span class="consent-icon">🔒</span>
+                        <div>
+                            <strong id="consentDataTitle">Data Handling & Confidentiality</strong>
+                            <span id="consentDataBody">All responses are stored securely. Results are reported only in aggregate form — for example, "70% of respondents across the organisation..." — ensuring no individual can be identified by their specific answers.</span>
+                        </div>
+                    </div>
+                    <div class="consent-item">
+                        <span class="consent-icon">📊</span>
+                        <div>
+                            <strong id="consentDemoTitle">About the Demographic Questions</strong>
+                            <span id="consentDemoBody">Questions regarding your role and department appear at the end of this survey. They are used strictly for high-level trend analysis and are entirely optional.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="consent-just-culture">
+                    <strong id="consentJCTitle">✈️ A Note on Just Culture</strong>
+                    <span id="consentJCBody">We are seeking your most candid perspectives. In the spirit of Just Culture, there are no "right" or "wrong" answers — only your honest experience. Your input directly contributes to the strengthening of our Safety Management System.</span>
+                </div>
+                <div><span class="consent-time">⏱ <span id="consentTime">Estimated time: 10 – 12 minutes</span></span></div>
             </div>
         </div>
 
+        <!-- PROGRESS BAR -->
         <div class="progress-wrap">
             <div class="progress-label">
                 <span id="progressLabel">Survey Progress</span>
@@ -373,40 +251,48 @@
 
         <form id="surveyForm" novalidate>
 
-            <!-- DEMOGRAPHICS -->
-            <div class="section">
+            <!-- 23 QUESTIONS — injected dynamically -->
+            <div id="questionsContainer"></div>
+
+            <!-- DEMOGRAPHICS — OPTIONAL, AT BOTTOM -->
+            <div class="section optional-section">
                 <div class="section-header">
-                    <span class="section-badge" id="step1Badge">STEP 1</span>
-                    <h2 id="step1Title">Your Role</h2>
+                    <span class="section-badge" id="demoBadge">OPTIONAL</span>
+                    <h2 id="demoTitle">About You</h2>
+                </div>
+                <div class="optional-note">
+                    <span>ℹ️</span>
+                    <span id="optionalNoteText">These fields are optional and used only for aggregate trend analysis. Your anonymity is fully preserved.</span>
                 </div>
                 <div class="demo-grid">
                     <div class="form-group">
-                        <label id="deptLabel">Department *</label>
-                        <select id="department" name="department" required>
-                            <option value="" disabled selected>Select department</option>
+                        <label id="deptLabel">Department</label>
+                        <select id="department" name="department">
+                            <option value="">Select department</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label id="catLabel">Employee Category *</label>
-                        <select id="employee_category" name="employee_category" required>
-                            <option value="" disabled selected>Select category</option>
+                        <label id="catLabel">Employee Category</label>
+                        <select id="employee_category" name="employee_category">
+                            <option value="">Select category</option>
                         </select>
                     </div>
                     <div class="form-group full">
-                        <label id="expLabel">Years of Experience *</label>
-                        <select id="years_experience" name="years_experience" required>
-                            <option value="" disabled selected>—</option>
+                        <label id="expLabel">Years of Experience</label>
+                        <select id="years_experience" name="years_experience">
+                            <option value="">—</option>
                             <option value="<1"  id="exp1">Less than 1 year</option>
                             <option value="1-3" id="exp2">1 – 3 years</option>
                             <option value="3-5" id="exp3">3 – 5 years</option>
                             <option value="5+"  id="exp4">More than 5 years</option>
                         </select>
                     </div>
+                    <div class="form-group full">
+                        <label id="commentsLabel">Additional Comments</label>
+                        <textarea id="q24_comments" name="q24_comments" placeholder="Any further observations or feedback (optional)..."></textarea>
+                    </div>
                 </div>
             </div>
-
-            <!-- Questions injected dynamically -->
-            <div id="questionsContainer"></div>
 
             <div class="submit-wrap">
                 <button type="submit" class="btn-submit" id="submitBtn">SUBMIT SURVEY ✈️</button>
@@ -418,70 +304,69 @@
         <div id="successScreen">
             <div class="success-icon">✅</div>
             <h2 id="successTitle">Thank You!</h2>
-            <p id="successBody">Your response has been submitted successfully and anonymously.<br>Your feedback helps improve safety.</p>
+            <p id="successBody">Your response has been recorded successfully and anonymously.<br>Your candid feedback strengthens our Safety Management System.</p>
         </div>
 
-    </div><!-- /.container -->
+    </div>
 
     <footer class="site-footer">
         <div class="footer-brand">
-            <a href="https://thesafetylayer.xyz" target="_blank" rel="noopener">
-                THE <span>SAFETY</span> LAYER
-            </a>
+            <a href="https://thesafetylayer.xyz" target="_blank" rel="noopener">THE <span>SAFETY</span> LAYER</a>
         </div>
         <div class="footer-tagline">Aviation Safety Management · ICAO Annex 19</div>
         <div class="footer-divider"></div>
-        <div class="footer-credit">
-            Built by <a href="https://gsacharya.com" target="_blank" rel="noopener">Ghanshyam Acharya</a>
-        </div>
+        <div class="footer-credit">Built by <a href="https://gsacharya.com" target="_blank" rel="noopener">Ghanshyam Acharya</a></div>
     </footer>
 
-</div><!-- /#mainContent -->
+</div>
 
 <script type="module">
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 
-// ── CONFIG ─────────────────────────────────────────────────────────────────
 const SUPABASE_URL  = 'https://nrbnhvtomwfmanijtgal.supabase.co';
 const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5yYm5odnRvbXdmbWFuaWp0Z2FsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQwOTAxMTQsImV4cCI6MjA4OTY2NjExNH0.QsOVIjDDc_UzT7CqtUedGktrAtVTvXk3HnxKlwtWtDs';
-// ───────────────────────────────────────────────────────────────────────────
-
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON);
 
-// ── LANGUAGE STRINGS ────────────────────────────────────────────────────────
-// NOTE: departments and categories are NO LONGER here — fetched from Supabase
+// ── i18n ────────────────────────────────────────────────────────────────────
 const i18n = {
     en: {
         headerTitle:        'Safety Culture Survey',
-        headerSubtitle:     'Corporate Safety Department · ICAO Annex 19 Aligned',
-        anonTitle:          'Your responses are fully anonymous.',
-        anonBody:           'No names or identifying information are collected. Results are reported in aggregate only. Please answer honestly.',
+        headerSubtitle:     'Safety Management System · ICAO Annex 19 Aligned',
+        consentHeading:     '📋 Before You Begin — Please Read',
+        consentPurposeTitle:'Purpose of This Survey',
+        consentPurposeBody: 'Thank you for participating. The objective of this survey is to assess the safety culture within our organisation across the four pillars of the Safety Management System (SMS) as defined by ICAO Annex 19. Your insights are vital to identifying systemic strengths and areas for improvement that data alone cannot capture.',
+        consentVolTitle:    'Voluntary Participation',
+        consentVolBody:     'You may skip any question or stop the survey at any time. There is no obligation to complete every item.',
+        consentDataTitle:   'Data Handling & Confidentiality',
+        consentDataBody:    'All responses are stored securely. Results are reported only in aggregate form — for example, "70% of respondents across the organisation..." — ensuring no individual can be identified by their specific answers.',
+        consentDemoTitle:   'About the Demographic Questions',
+        consentDemoBody:    'Questions regarding your role and department appear at the end of this survey. They are used strictly for high-level trend analysis and are entirely optional.',
+        consentJCTitle:     '✈️ A Note on Just Culture',
+        consentJCBody:      'We are seeking your most candid perspectives. In the spirit of Just Culture, there are no "right" or "wrong" answers — only your honest experience. Your input directly contributes to the strengthening of our Safety Management System.',
+        consentTime:        'Estimated time: 10 – 12 minutes',
         progressLabel:      'Survey Progress',
         progressOf:         'of',
         progressAnswered:   'answered',
-        step1Badge:         'STEP 1',
-        step1Title:         'Your Role',
-        deptLabel:          'Department *',
+        demoBadge:          'OPTIONAL',
+        demoTitle:          'About You',
+        optionalNoteText:   'These fields are optional and used only for aggregate trend analysis. Your anonymity is fully preserved.',
+        deptLabel:          'Department',
         deptPlaceholder:    'Select department',
-        catLabel:           'Employee Category *',
+        catLabel:           'Employee Category',
         catPlaceholder:     'Select category',
-        expLabel:           'Years of Experience *',
+        expLabel:           'Years of Experience',
         exp1: 'Less than 1 year', exp2: '1 – 3 years',
         exp3: '3 – 5 years',      exp4: 'More than 5 years',
-        successTitle:       'Thank You!',
-        successBody:        'Your response has been submitted successfully and anonymously. Your feedback helps improve safety.',
+        commentsLabel:      'Additional Comments',
+        commentsPlaceholder:'Any further observations or feedback (optional)...',
         submitBtn:          'SUBMIT SURVEY ✈️',
-        validationDemo:     'Please complete all fields in the Your Role section.',
-        validationQ:        'Please answer all required questions before submitting.',
+        validationQ:        'Please answer all 23 questions before submitting.',
         submitting:         'Submitting your response...',
         submitError:        'Submission failed. Please try again.',
-        optional:           'OPTIONAL',
-        additionalFeedback: 'Additional Feedback',
-        commentsLabel:      'Is there anything further you would like to add?',
-        commentsPlaceholder:'Your comments (optional)...',
+        successTitle:       'Thank You!',
+        successBody:        'Your response has been recorded successfully and anonymously. Your candid feedback strengthens our Safety Management System.',
         likert:   ['Strongly Disagree','Disagree','No Opinion','Agree','Strongly Agree'],
-        aware:    'Aware',
-        unaware:  'Unaware',
+        aware: 'Aware', unaware: 'Unaware',
         pillarBadges: ['PILLAR 1','PILLAR 2','PILLAR 3','PILLAR 4'],
         pillarTitles: [
             'Section A: Safety Policy & Objectives',
@@ -490,13 +375,11 @@ const i18n = {
             'Section D: Safety Promotion'
         ],
         questions: [
-            // Pillar 1 — Safety Policy & Objectives
             { name:'q1_aware',          type:'binary', text:'I am aware of my organisation\'s Safety Policy Statement.' },
             { name:'q2',                type:'likert', text:'Employees at all levels are regularly informed and reminded about the Safety Policy Statement.' },
-            { name:'q3',                type:'likert', text:'The Safety Policy Statement clearly demonstrates the company\'s commitment to safety.' },
+            { name:'q3',                type:'likert', text:'The Safety Policy Statement clearly demonstrates the organisation\'s commitment to safety.' },
             { name:'q4',                type:'likert', text:'The Safety Policy Statement is applicable and relevant to all employees, regardless of their role or level.' },
             { name:'q5_spi',            type:'likert', text:'I am aware of our organisation\'s safety performance targets and how we are tracking against them.' },
-            // Pillar 2 — Safety Risk Management
             { name:'q6',                type:'likert', text:'I believe that our organisation has an effective hazard reporting process.' },
             { name:'q7',                type:'likert', text:'I feel comfortable reporting safety concerns through our hazard reporting process.' },
             { name:'q8',                type:'likert', text:'Our hazard reporting process is easy to use.' },
@@ -505,51 +388,56 @@ const i18n = {
             { name:'q11',               type:'likert', text:'When I observe an unsafe act or condition, I report it through the appropriate channel.' },
             { name:'q12_risk_assess',   type:'likert', text:'I understand how risks are assessed and prioritised after a hazard report is submitted.' },
             { name:'q13_action_inform', type:'likert', text:'I am informed of the actions taken to address hazards I have reported.' },
-            // Pillar 3 — Safety Assurance
-            { name:'q14',               type:'likert', text:'Management gives good feedback regarding the organisation\'s safety performance.' },
-            { name:'q15',               type:'likert', text:'Management follows up with me regarding safety issues I have reported.' },
+            { name:'q14',               type:'likert', text:'Management provides good feedback regarding the organisation\'s safety performance.' },
+            { name:'q15',               type:'likert', text:'Management follows up regarding safety issues that have been reported.' },
             { name:'q16',               type:'likert', text:'Safety audits and inspections are carried out regularly in my work area.' },
             { name:'q19_invest_outcome',type:'likert', text:'I am informed of the outcomes of safety investigations relevant to my work area.' },
-            { name:'q20_corrective',    type:'likert', text:'I observe that corrective actions from safety findings are actually implemented.' },
-            // Pillar 4 — Safety Promotion
-            { name:'q17',               type:'likert', text:'I feel that I am given enough training to competently and safely complete my tasks.' },
-            { name:'q18',               type:'likert', text:'I have checklists and procedures I can consult to complete my routine duties safely.' },
+            { name:'q20_corrective',    type:'likert', text:'Corrective actions arising from safety findings are actually implemented.' },
+            { name:'q17',               type:'likert', text:'I am given sufficient training to competently and safely perform my duties.' },
+            { name:'q18',               type:'likert', text:'I have access to the checklists and procedures needed to complete my duties safely.' },
             { name:'q21',               type:'likert', text:'I am kept informed when changes are made that may affect safety in my role.' },
-            { name:'q22',               type:'likert', text:'In case of an emergency, I know which document to follow and who to contact.' },
+            { name:'q22',               type:'likert', text:'In the event of an emergency, I know which procedures to follow and who to contact.' },
             { name:'q23_peer',          type:'likert', text:'My colleagues take safety seriously in their day-to-day work.' },
         ]
     },
     ne: {
         headerTitle:        'सुरक्षा संस्कृति सर्वेक्षण',
-        headerSubtitle:     'कर्पोरेट सुरक्षा विभाग · ICAO Annex 19 अनुरूप',
-        anonTitle:          'तपाईंका जवाफहरू पूर्णतः गोप्य छन्।',
-        anonBody:           'कुनै नाम वा पहिचान जानकारी संकलन गरिँदैन। परिणामहरू समग्र रूपमा मात्र रिपोर्ट गरिन्छ। कृपया इमानदारीपूर्वक जवाफ दिनुहोस्।',
+        headerSubtitle:     'सुरक्षा व्यवस्थापन प्रणाली · ICAO Annex 19 अनुरूप',
+        consentHeading:     '📋 सुरु गर्नुअघि — कृपया पढ्नुहोस्',
+        consentPurposeTitle:'यस सर्वेक्षणको उद्देश्य',
+        consentPurposeBody: 'सहभागिताका लागि धन्यवाद। यस सर्वेक्षणको उद्देश्य ICAO Annex 19 द्वारा परिभाषित सुरक्षा व्यवस्थापन प्रणाली (SMS) का चार स्तम्भहरूमा हाम्रो संस्थाको सुरक्षा संस्कृतिको मूल्याङ्कन गर्नु हो। तपाईंका अन्तर्दृष्टिहरू प्रणालीगत बलहरू र सुधारका क्षेत्रहरू पहिचान गर्न महत्त्वपूर्ण छन्।',
+        consentVolTitle:    'स्वैच्छिक सहभागिता',
+        consentVolBody:     'तपाईं जुनसुकै प्रश्न छोड्न वा जुनसुकै समयमा सर्वेक्षण रोक्न सक्नुहुन्छ। सबै प्रश्नहरू पूरा गर्ने कुनै बाध्यता छैन।',
+        consentDataTitle:   'डेटा ह्यान्डलिङ र गोपनीयता',
+        consentDataBody:    'सबै जवाफहरू सुरक्षित रूपमा भण्डारण गरिन्छ। नतिजाहरू समग्र रूपमा मात्र रिपोर्ट गरिन्छ — कुनै व्यक्तिलाई उनीहरूका विशिष्ट जवाफद्वारा पहिचान गर्न नसकिने सुनिश्चित गर्दै।',
+        consentDemoTitle:   'जनसांख्यिकीय प्रश्नहरूबारे',
+        consentDemoBody:    'तपाईंको भूमिका र विभागसम्बन्धी प्रश्नहरू यस सर्वेक्षणको अन्तमा छन्। तिनीहरू उच्च-स्तरीय प्रवृत्ति विश्लेषणका लागि मात्र प्रयोग गरिन्छ र पूर्णतः ऐच्छिक छन्।',
+        consentJCTitle:     '✈️ न्यायोचित संस्कृतिबारे एक नोट',
+        consentJCBody:      'हामी तपाईंको सबैभन्दा इमानदार दृष्टिकोण खोजिरहेका छौं। न्यायोचित संस्कृतिको भावनामा, कुनै "सही" वा "गलत" जवाफ छैन — केवल तपाईंको इमानदार अनुभव। तपाईंको योगदानले हाम्रो सुरक्षा व्यवस्थापन प्रणालीलाई प्रत्यक्ष बलियो बनाउँछ।',
+        consentTime:        'अनुमानित समय: १० – १२ मिनेट',
         progressLabel:      'सर्वेक्षण प्रगति',
         progressOf:         'मध्ये',
         progressAnswered:   'उत्तर दिइएको',
-        step1Badge:         'चरण १',
-        step1Title:         'तपाईंको भूमिका',
-        deptLabel:          'विभाग *',
+        demoBadge:          'ऐच्छिक',
+        demoTitle:          'तपाईंबारे',
+        optionalNoteText:   'यी फिल्डहरू ऐच्छिक छन् र केवल समग्र प्रवृत्ति विश्लेषणका लागि प्रयोग गरिन्छ। तपाईंको गोपनीयता पूर्णतः सुरक्षित छ।',
+        deptLabel:          'विभाग',
         deptPlaceholder:    'विभाग छान्नुहोस्',
-        catLabel:           'कर्मचारी वर्ग *',
+        catLabel:           'कर्मचारी वर्ग',
         catPlaceholder:     'वर्ग छान्नुहोस्',
-        expLabel:           'अनुभवका वर्षहरू *',
+        expLabel:           'अनुभवका वर्षहरू',
         exp1: '१ वर्षभन्दा कम', exp2: '१ – ३ वर्ष',
         exp3: '३ – ५ वर्ष',    exp4: '५ वर्षभन्दा बढी',
-        successTitle:       'धन्यवाद!',
-        successBody:        'तपाईंको जवाफ सफलतापूर्वक र गोप्य रूपमा पेश गरिएको छ। तपाईंको प्रतिक्रियाले सुरक्षा सुधार गर्न मद्दत गर्छ।',
+        commentsLabel:      'अतिरिक्त टिप्पणीहरू',
+        commentsPlaceholder:'थप अवलोकन वा प्रतिक्रिया (ऐच्छिक)...',
         submitBtn:          'सर्वेक्षण पेश गर्नुहोस् ✈️',
-        validationDemo:     'कृपया "तपाईंको भूमिका" खण्डका सबै फिल्डहरू पूरा गर्नुहोस्।',
-        validationQ:        'कृपया पेश गर्नुअघि सबै आवश्यक प्रश्नहरूको उत्तर दिनुहोस्।',
+        validationQ:        'कृपया पेश गर्नुअघि सबै २३ प्रश्नहरूको उत्तर दिनुहोस्।',
         submitting:         'तपाईंको जवाफ पेश गर्दै...',
         submitError:        'पेश गर्न असफल। कृपया पुनः प्रयास गर्नुहोस्।',
-        optional:           'ऐच्छिक',
-        additionalFeedback: 'अतिरिक्त प्रतिक्रिया',
-        commentsLabel:      'थप केही भन्न चाहनुहुन्छ?',
-        commentsPlaceholder:'तपाईंका टिप्पणीहरू (ऐच्छिक)...',
+        successTitle:       'धन्यवाद!',
+        successBody:        'तपाईंको जवाफ सफलतापूर्वक र गोप्य रूपमा दर्ता गरिएको छ। तपाईंको इमानदार प्रतिक्रियाले हाम्रो सुरक्षा व्यवस्थापन प्रणालीलाई बलियो बनाउँछ।',
         likert:   ['कडा असहमत','असहमत','कुनै राय छैन','सहमत','कडा सहमत'],
-        aware:    'जानकार',
-        unaware:  'अजानकार',
+        aware: 'जानकार', unaware: 'अजानकार',
         pillarBadges: ['स्तम्भ १','स्तम्भ २','स्तम्भ ३','स्तम्भ ४'],
         pillarTitles: [
             'खण्ड क: सुरक्षा नीति र उद्देश्यहरू',
@@ -560,49 +448,46 @@ const i18n = {
         questions: [
             { name:'q1_aware',          type:'binary', text:'म आफ्नो संस्थाको सुरक्षा नीति बयानबारे जानकार छु।' },
             { name:'q2',                type:'likert', text:'सबै तहका कर्मचारीहरूलाई सुरक्षा नीति बयानबारे नियमित रूपमा सूचित र स्मरण गराइन्छ।' },
-            { name:'q3',                type:'likert', text:'सुरक्षा नीति बयानले सुरक्षाप्रति कम्पनीको प्रतिबद्धता स्पष्ट रूपमा देखाउँछ।' },
+            { name:'q3',                type:'likert', text:'सुरक्षा नीति बयानले संस्थाको सुरक्षाप्रति प्रतिबद्धता स्पष्ट रूपमा देखाउँछ।' },
             { name:'q4',                type:'likert', text:'सुरक्षा नीति बयान सबै कर्मचारीहरूमा, तिनीहरूको भूमिका वा स्तर जुनसुकै भए पनि, लागू र सान्दर्भिक छ।' },
             { name:'q5_spi',            type:'likert', text:'म हाम्रो संस्थाका सुरक्षा प्रदर्शन लक्ष्यहरू र हामी ती विरुद्ध कसरी अघि बढिरहेका छौँ भन्नेबारे जानकार छु।' },
             { name:'q6',                type:'likert', text:'मलाई विश्वास छ कि हाम्रो संस्थामा एक प्रभावकारी खतरा रिपोर्टिङ प्रक्रिया छ।' },
             { name:'q7',                type:'likert', text:'म हाम्रो खतरा रिपोर्टिङ प्रक्रिया मार्फत सुरक्षा चिन्ताहरू रिपोर्ट गर्न सहज महसुस गर्छु।' },
             { name:'q8',                type:'likert', text:'हाम्रो खतरा रिपोर्टिङ प्रक्रिया प्रयोग गर्न सजिलो छ।' },
-            { name:'q9',                type:'likert', text:'सुरक्षा समस्याहरू रिपोर्ट गर्नाले मेरो व्यक्तिगत सुरक्षा र मेरा सहकर्मीहरूको सुरक्षाका लागि स्पष्ट मूल्य छ।' },
+            { name:'q9',                type:'likert', text:'सुरक्षा समस्याहरू रिपोर्ट गर्नाले मेरो र मेरा सहकर्मीहरूको व्यक्तिगत सुरक्षाका लागि स्पष्ट मूल्य छ।' },
             { name:'q10',               type:'likert', text:'म नकारात्मक परिणामको डर बिना कुनै पनि सुरक्षा चिन्ता रिपोर्ट गर्न सुरक्षित महसुस गर्छु।' },
             { name:'q11',               type:'likert', text:'जब म कुनै असुरक्षित कार्य वा अवस्था देख्छु, म यसलाई उचित च्यानल मार्फत रिपोर्ट गर्छु।' },
             { name:'q12_risk_assess',   type:'likert', text:'खतरा रिपोर्ट पेश गरेपछि जोखिमहरू कसरी मूल्याङ्कन र प्राथमिकता दिइन्छ भनी म बुझ्छु।' },
-            { name:'q13_action_inform', type:'likert', text:'मैले रिपोर्ट गरेका खतराहरू सम्बोधन गर्न गरिएका कार्यहरूबारे मलाई सूचित गरिन्छ।' },
+            { name:'q13_action_inform', type:'likert', text:'रिपोर्ट गरिएका खतराहरू सम्बोधन गर्न गरिएका कार्यहरूबारे मलाई सूचित गरिन्छ।' },
             { name:'q14',               type:'likert', text:'व्यवस्थापनले संस्थाको सुरक्षा प्रदर्शनबारे राम्रो प्रतिक्रिया दिन्छ।' },
-            { name:'q15',               type:'likert', text:'व्यवस्थापनले मैले रिपोर्ट गरेका सुरक्षा समस्याहरूबारे मलाई फलोअप गर्छ।' },
+            { name:'q15',               type:'likert', text:'व्यवस्थापनले रिपोर्ट गरिएका सुरक्षा समस्याहरूमा फलोअप गर्छ।' },
             { name:'q16',               type:'likert', text:'मेरो कार्यक्षेत्रमा नियमित रूपमा सुरक्षा अडिट र निरीक्षणहरू गरिन्छ।' },
             { name:'q19_invest_outcome',type:'likert', text:'मेरो कार्यक्षेत्रसँग सम्बन्धित सुरक्षा अनुसन्धानहरूका नतिजाहरूबारे मलाई सूचित गरिन्छ।' },
-            { name:'q20_corrective',    type:'likert', text:'सुरक्षा निष्कर्षहरूबाट सुधारात्मक कार्यहरू वास्तवमा कार्यान्वयन भएको मैले देख्छु।' },
-            { name:'q17',               type:'likert', text:'मलाई मेरा कार्यहरू सक्षमतापूर्वक र सुरक्षित रूपमा पूरा गर्न पर्याप्त तालिम दिइएको छ।' },
-            { name:'q18',               type:'likert', text:'मेरा नियमित कर्तव्यहरू सुरक्षित रूपमा पूरा गर्न परामर्श गर्न सकिने चेकलिस्ट र प्रक्रियाहरू मसँग छन्।' },
+            { name:'q20_corrective',    type:'likert', text:'सुरक्षा निष्कर्षहरूबाट उत्पन्न सुधारात्मक कार्यहरू वास्तवमा कार्यान्वयन भएको मैले देख्छु।' },
+            { name:'q17',               type:'likert', text:'मलाई मेरा कर्तव्यहरू सक्षमतापूर्वक र सुरक्षित रूपमा पूरा गर्न पर्याप्त तालिम दिइएको छ।' },
+            { name:'q18',               type:'likert', text:'मेरा कर्तव्यहरू सुरक्षित रूपमा पूरा गर्न आवश्यक चेकलिस्ट र प्रक्रियाहरूमा मेरो पहुँच छ।' },
             { name:'q21',               type:'likert', text:'मेरो भूमिकामा सुरक्षालाई असर गर्न सक्ने परिवर्तनहरू गर्दा मलाई सूचित गरिन्छ।' },
-            { name:'q22',               type:'likert', text:'आपतकालीन अवस्थामा, कुन कागजात पालना गर्ने र कसलाई सम्पर्क गर्ने भनेर म जान्दछु।' },
-            { name:'q23_peer',          type:'likert', text:'मेरा सहकर्मीहरूले आफ्नो दैनिक कामलाई गम्भीरतापूर्वक लिन्छन्।' },
+            { name:'q22',               type:'likert', text:'आपतकालीन अवस्थामा, कुन प्रक्रिया पालना गर्ने र कसलाई सम्पर्क गर्ने भनेर म जान्दछु।' },
+            { name:'q23_peer',          type:'likert', text:'मेरा सहकर्मीहरूले आफ्नो दैनिक कामलाई सुरक्षालाई गम्भीरतापूर्वक लिन्छन्।' },
         ]
     }
 };
 
-// Pillar boundaries (0-based question index ranges, inclusive)
 const PILLAR_RANGES = [[0,4],[5,12],[13,17],[18,22]];
 
-// ── STATE ───────────────────────────────────────────────────────────────────
 let currentLang = 'en';
 let airlineData = null;
 let airlineId   = null;
-let deptData    = [];   // [{name_en, name_local}] from Supabase
-let catData     = [];   // [{name_en, name_local}] from Supabase
+let deptData    = [];
+let catData     = [];
 const TOTAL_Q   = 23;
 
-// ── INIT ────────────────────────────────────────────────────────────────────
+// ── INIT ─────────────────────────────────────────────────────────────────
 async function init() {
     const params = new URLSearchParams(window.location.search);
     const slug   = params.get('airline') || 'sita-air';
 
-    // Fetch airline first so we have its id for dept/cat queries
-    const { data: airline, error: airlineError } = await supabase
+    const { data: airline, error } = await supabase
         .from('airlines')
         .select('id, name, name_local, logo_url, status')
         .eq('slug', slug)
@@ -611,7 +496,7 @@ async function init() {
 
     document.getElementById('loadingScreen').classList.add('hidden');
 
-    if (airlineError || !airline) {
+    if (error || !airline) {
         document.getElementById('notFoundScreen').classList.add('visible');
         return;
     }
@@ -619,46 +504,29 @@ async function init() {
     airlineData = airline;
     airlineId   = airline.id;
 
-    // Now fetch departments and categories filtered by this airline
     const [deptRes, catRes] = await Promise.all([
-        supabase
-            .from('airline_departments')
-            .select('name_en, name_local')
-            .eq('airline_id', airlineId)
-            .eq('is_active', true)
-            .order('sort_order'),
-        supabase
-            .from('airline_categories')
-            .select('name_en, name_local')
-            .eq('airline_id', airlineId)
-            .eq('is_active', true)
-            .order('sort_order')
+        supabase.from('airline_departments').select('name_en, name_local').eq('airline_id', airlineId).eq('is_active', true).order('sort_order'),
+        supabase.from('airline_categories').select('name_en, name_local').eq('airline_id', airlineId).eq('is_active', true).order('sort_order')
     ]);
 
     deptData = deptRes.data || [];
     catData  = catRes.data  || [];
 
-    // Apply branding
     document.getElementById('airlineName').textContent = airline.name;
-    document.title = `Safety Survey | ${airline.name}`;
+    document.title = `Safety Culture Survey | ${airline.name}`;
     if (airline.logo_url) {
         document.getElementById('airlineLogoPlaceholder').style.display = 'none';
         const img = document.getElementById('airlineLogoImg');
-        img.src = airline.logo_url;
-        img.style.display = 'block';
+        img.src = airline.logo_url; img.style.display = 'block';
     }
 
-    // Render form then show
     renderQuestions('en');
     populateDropdowns('en');
     document.getElementById('mainContent').style.display = 'block';
-
-    // Attach progress listeners
-    document.querySelectorAll('input[type="radio"]')
-        .forEach(r => r.addEventListener('change', updateProgress));
+    document.querySelectorAll('input[type="radio"]').forEach(r => r.addEventListener('change', updateProgress));
 }
 
-// ── RENDER QUESTIONS ─────────────────────────────────────────────────────────
+// ── RENDER QUESTIONS ─────────────────────────────────────────────────────
 function renderQuestions(lang) {
     const t         = i18n[lang];
     const container = document.getElementById('questionsContainer');
@@ -685,10 +553,7 @@ function renderQuestions(lang) {
 
             if (q.type === 'binary') {
                 div.innerHTML = `
-                    <div class="question-text">
-                        <span class="q-num">${num}.</span>
-                        <span>${q.text}</span>
-                    </div>
+                    <div class="question-text"><span class="q-num">${num}.</span><span>${q.text}</span></div>
                     <div class="options-binary">
                         <label><input type="radio" name="${q.name}" value="true"> ✅ ${t.aware}</label>
                         <label><input type="radio" name="${q.name}" value="false"> ❌ ${t.unaware}</label>
@@ -696,16 +561,9 @@ function renderQuestions(lang) {
                     <div class="validation-msg">⚠ Please answer this question.</div>`;
             } else {
                 const opts = t.likert.map((l, i) => `
-                    <label>
-                        <div class="likert-dot"></div>
-                        <input type="radio" name="${q.name}" value="${i + 1}">
-                        ${l}
-                    </label>`).join('');
+                    <label><div class="likert-dot"></div><input type="radio" name="${q.name}" value="${i+1}">${l}</label>`).join('');
                 div.innerHTML = `
-                    <div class="question-text">
-                        <span class="q-num">${num}.</span>
-                        <span>${q.text}</span>
-                    </div>
+                    <div class="question-text"><span class="q-num">${num}.</span><span>${q.text}</span></div>
                     <div class="options-likert">${opts}</div>
                     <div class="validation-msg">⚠ Please answer this question.</div>`;
             }
@@ -713,57 +571,35 @@ function renderQuestions(lang) {
         }
     });
 
-    // Optional feedback
-    const feedbackSection = document.createElement('div');
-    feedbackSection.className = 'section';
-    feedbackSection.innerHTML = `
-        <div class="section-header">
-            <span class="section-badge">${t.optional}</span>
-            <h2>${t.additionalFeedback}</h2>
-        </div>
-        <div style="padding:1.2rem 1.4rem;">
-            <div class="form-group full">
-                <label>${t.commentsLabel}</label>
-                <textarea id="q24_comments" name="q24_comments" placeholder="${t.commentsPlaceholder}"></textarea>
-            </div>
-        </div>`;
-    container.appendChild(feedbackSection);
-
-    // Re-attach progress listeners after re-render
-    document.querySelectorAll('input[type="radio"]')
-        .forEach(r => r.addEventListener('change', updateProgress));
+    document.querySelectorAll('input[type="radio"]').forEach(r => r.addEventListener('change', updateProgress));
     updateProgress();
 }
 
-// ── POPULATE DROPDOWNS (from Supabase data) ───────────────────────────────
+// ── POPULATE DROPDOWNS ────────────────────────────────────────────────────
 function populateDropdowns(lang) {
-    const t         = i18n[lang];
-    const deptSel   = document.getElementById('department');
-    const catSel    = document.getElementById('employee_category');
-    const savedDept = deptSel.value;
-    const savedCat  = catSel.value;
+    const t       = i18n[lang];
+    const deptSel = document.getElementById('department');
+    const catSel  = document.getElementById('employee_category');
+    const sd = deptSel.value, sc = catSel.value;
 
-    // Departments — display local name if Nepali, always store English in DB
-    deptSel.innerHTML = `<option value="" disabled>${t.deptPlaceholder}</option>`;
+    deptSel.innerHTML = `<option value="">${t.deptPlaceholder}</option>`;
     deptData.forEach(d => {
-        const o     = document.createElement('option');
-        o.value     = d.name_en;  // English stored in responses table
+        const o = document.createElement('option');
+        o.value = d.name_en;
         o.textContent = (lang === 'ne' && d.name_local) ? d.name_local : d.name_en;
         deptSel.appendChild(o);
     });
-    if (savedDept) deptSel.value = savedDept;
+    if (sd) deptSel.value = sd;
 
-    // Categories
-    catSel.innerHTML = `<option value="" disabled>${t.catPlaceholder}</option>`;
+    catSel.innerHTML = `<option value="">${t.catPlaceholder}</option>`;
     catData.forEach(c => {
-        const o     = document.createElement('option');
-        o.value     = c.name_en;
+        const o = document.createElement('option');
+        o.value = c.name_en;
         o.textContent = (lang === 'ne' && c.name_local) ? c.name_local : c.name_en;
         catSel.appendChild(o);
     });
-    if (savedCat) catSel.value = savedCat;
+    if (sc) catSel.value = sc;
 
-    // Experience (static — same across all airlines)
     document.getElementById('exp1').textContent = t.exp1;
     document.getElementById('exp2').textContent = t.exp2;
     document.getElementById('exp3').textContent = t.exp3;
@@ -773,38 +609,55 @@ function populateDropdowns(lang) {
 // ── LANGUAGE SWITCH ───────────────────────────────────────────────────────
 window.setLang = function(lang) {
     currentLang = lang;
-    const t     = i18n[lang];
+    const t = i18n[lang];
 
-    // Static UI strings
+    // Header
     document.getElementById('headerTitle').textContent    = t.headerTitle;
     document.getElementById('headerSubtitle').textContent = t.headerSubtitle;
-    document.getElementById('anonTitle').textContent      = t.anonTitle;
-    document.getElementById('anonBody').textContent       = t.anonBody;
+    // Consent block
+    document.getElementById('consentHeading').textContent      = t.consentHeading;
+    document.getElementById('consentPurposeTitle').textContent = t.consentPurposeTitle;
+    document.getElementById('consentPurposeBody').textContent  = t.consentPurposeBody;
+    document.getElementById('consentVolTitle').textContent     = t.consentVolTitle;
+    document.getElementById('consentVolBody').textContent      = t.consentVolBody;
+    document.getElementById('consentDataTitle').textContent    = t.consentDataTitle;
+    document.getElementById('consentDataBody').textContent     = t.consentDataBody;
+    document.getElementById('consentDemoTitle').textContent    = t.consentDemoTitle;
+    document.getElementById('consentDemoBody').textContent     = t.consentDemoBody;
+    document.getElementById('consentJCTitle').textContent      = t.consentJCTitle;
+    document.getElementById('consentJCBody').textContent       = t.consentJCBody;
+    document.getElementById('consentTime').textContent         = t.consentTime;
+    // Progress
     document.getElementById('progressLabel').textContent  = t.progressLabel;
-    document.getElementById('step1Badge').textContent     = t.step1Badge;
-    document.getElementById('step1Title').textContent     = t.step1Title;
+    // Demographics
+    document.getElementById('demoBadge').textContent      = t.demoBadge;
+    document.getElementById('demoTitle').textContent      = t.demoTitle;
+    document.getElementById('optionalNoteText').textContent = t.optionalNoteText;
     document.getElementById('deptLabel').textContent      = t.deptLabel;
     document.getElementById('catLabel').textContent       = t.catLabel;
     document.getElementById('expLabel').textContent       = t.expLabel;
-    document.getElementById('submitBtn').textContent      = t.submitBtn;
+    document.getElementById('commentsLabel').textContent  = t.commentsLabel;
+    const ta = document.getElementById('q24_comments');
+    if (ta) ta.placeholder = t.commentsPlaceholder;
+    // Submit
+    document.getElementById('submitBtn').textContent = t.submitBtn;
 
-    // Airline name in local language
+    // Airline name
     if (lang === 'ne' && airlineData?.name_local) {
         document.getElementById('airlineName').textContent = airlineData.name_local;
     } else if (airlineData) {
         document.getElementById('airlineName').textContent = airlineData.name;
     }
 
-    // Save current answers before re-render
+    // Save answers
     const answers = {};
-    document.querySelectorAll('input[type="radio"]:checked')
-        .forEach(r => { answers[r.name] = r.value; });
+    document.querySelectorAll('input[type="radio"]:checked').forEach(r => { answers[r.name] = r.value; });
     const comments = document.getElementById('q24_comments')?.value || '';
 
     renderQuestions(lang);
     populateDropdowns(lang);
 
-    // Restore answers after re-render
+    // Restore answers
     Object.entries(answers).forEach(([name, value]) => {
         const el = document.querySelector(`input[name="${name}"][value="${value}"]`);
         if (el) el.checked = true;
@@ -812,25 +665,22 @@ window.setLang = function(lang) {
     const commentsEl = document.getElementById('q24_comments');
     if (commentsEl) commentsEl.value = comments;
 
-    // Update lang button states
     document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
     document.getElementById(`btn-${lang}`).classList.add('active');
     document.documentElement.lang = lang === 'ne' ? 'ne' : 'en';
-
     updateProgress();
 };
 
-// ── PROGRESS ──────────────────────────────────────────────────────────────
+// ── PROGRESS ─────────────────────────────────────────────────────────────
 function updateProgress() {
     const answered = document.querySelectorAll('.question input[type="radio"]:checked').length;
-    const pct      = Math.round((answered / TOTAL_Q) * 100);
+    const pct = Math.round((answered / TOTAL_Q) * 100);
     document.getElementById('progressFill').style.width = pct + '%';
     const t = i18n[currentLang];
-    document.getElementById('progressText').textContent =
-        `${answered} ${t.progressOf} ${TOTAL_Q} ${t.progressAnswered}`;
+    document.getElementById('progressText').textContent = `${answered} ${t.progressOf} ${TOTAL_Q} ${t.progressAnswered}`;
 }
 
-// ── FORM SUBMISSION ───────────────────────────────────────────────────────
+// ── SUBMIT ────────────────────────────────────────────────────────────────
 document.getElementById('surveyForm').addEventListener('submit', async (e) => {
     e.preventDefault();
     const t      = i18n[currentLang];
@@ -838,35 +688,20 @@ document.getElementById('surveyForm').addEventListener('submit', async (e) => {
     const btn    = document.getElementById('submitBtn');
     const status = document.getElementById('statusMessage');
 
-    // Validate demographics
-    const dept = document.getElementById('department').value;
-    const cat  = document.getElementById('employee_category').value;
-    const exp  = document.getElementById('years_experience').value;
-    if (!dept || !cat || !exp) {
-        status.className   = 'error';
-        status.textContent = '⚠️ ' + t.validationDemo;
-        document.getElementById('department').scrollIntoView({ behavior: 'smooth', block: 'center' });
-        return;
-    }
-
-    // Validate all 23 questions
+    // Validate 23 questions only — demographics are optional
     const requiredNames = i18n.en.questions.map(q => q.name);
-    let allAnswered     = true;
-    let firstUnanswered = null;
+    let allAnswered = true, firstUnanswered = null;
     document.querySelectorAll('.question[data-q]').forEach(d => d.classList.remove('unanswered'));
 
     for (const name of requiredNames) {
         if (!form.querySelector(`input[name="${name}"]:checked`)) {
             allAnswered = false;
-            const qDiv  = form.querySelector(`[data-q="${name}"]`);
-            if (qDiv) {
-                qDiv.classList.add('unanswered');
-                if (!firstUnanswered) firstUnanswered = qDiv;
-            }
+            const qDiv = form.querySelector(`[data-q="${name}"]`);
+            if (qDiv) { qDiv.classList.add('unanswered'); if (!firstUnanswered) firstUnanswered = qDiv; }
         }
     }
     if (!allAnswered) {
-        status.className   = 'error';
+        status.className = 'error';
         status.textContent = '⚠️ ' + t.validationQ;
         if (firstUnanswered) firstUnanswered.scrollIntoView({ behavior: 'smooth', block: 'center' });
         return;
@@ -878,47 +713,46 @@ document.getElementById('surveyForm').addEventListener('submit', async (e) => {
     };
 
     const payload = {
-        airline_id:          airlineId,
-        version_id:          1,
-        language_used:       currentLang,
-        department:          dept,
-        employee_category:   cat,
-        years_experience:    exp,
-        q1_aware:            form.querySelector('input[name="q1_aware"]:checked')?.value === 'true',
-        q2:  getVal('q2'),  q3:  getVal('q3'),  q4:  getVal('q4'),  q5_spi: getVal('q5_spi'),
-        q6:  getVal('q6'),  q7:  getVal('q7'),  q8:  getVal('q8'),  q9:  getVal('q9'),
+        airline_id:         airlineId,
+        version_id:         1,
+        language_used:      currentLang,
+        department:         document.getElementById('department').value || null,
+        employee_category:  document.getElementById('employee_category').value || null,
+        years_experience:   document.getElementById('years_experience').value || null,
+        q1_aware:           form.querySelector('input[name="q1_aware"]:checked')?.value === 'true',
+        q2:  getVal('q2'),  q3:  getVal('q3'),  q4: getVal('q4'), q5_spi: getVal('q5_spi'),
+        q6:  getVal('q6'),  q7:  getVal('q7'),  q8: getVal('q8'), q9:  getVal('q9'),
         q10: getVal('q10'), q11: getVal('q11'),
-        q12_risk_assess:    getVal('q12_risk_assess'),
-        q13_action_inform:  getVal('q13_action_inform'),
+        q12_risk_assess:   getVal('q12_risk_assess'),
+        q13_action_inform: getVal('q13_action_inform'),
         q14: getVal('q14'), q15: getVal('q15'), q16: getVal('q16'),
         q19_invest_outcome: getVal('q19_invest_outcome'),
-        q20_corrective:     getVal('q20_corrective'),
+        q20_corrective:    getVal('q20_corrective'),
         q17: getVal('q17'), q18: getVal('q18'), q21: getVal('q21'),
         q22: getVal('q22'), q23_peer: getVal('q23_peer'),
         q24_comments: document.getElementById('q24_comments')?.value?.trim() || null,
     };
 
-    btn.disabled       = true;
-    status.className   = 'loading';
+    btn.disabled = true;
+    status.className = 'loading';
     status.textContent = '⏳ ' + t.submitting;
 
     const { error } = await supabase.from('responses').insert([payload]);
 
     if (error) {
-        status.className   = 'error';
+        status.className = 'error';
         status.textContent = '❌ ' + t.submitError + ' (' + error.message + ')';
-        btn.disabled       = false;
+        btn.disabled = false;
     } else {
         document.getElementById('surveyForm').style.display = 'none';
         status.style.display = 'none';
-        document.getElementById('successTitle').textContent = i18n[currentLang].successTitle;
-        document.getElementById('successBody').textContent  = i18n[currentLang].successBody;
+        document.getElementById('successTitle').textContent = t.successTitle;
+        document.getElementById('successBody').textContent  = t.successBody;
         document.getElementById('successScreen').style.display = 'block';
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 });
 
-// ── START ─────────────────────────────────────────────────────────────────
 init();
 </script>
 </body>
